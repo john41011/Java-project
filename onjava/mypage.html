@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>온전 JAVA - 마이페이지</title>
+  <link rel="stylesheet" href="style.css"/>
+  <script src="script.js" defer></script>
+  <script src="mypage.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1 onclick="location.href='index.html'">온전 JAVA</h1>
+    <nav>
+      <ul>
+        <li><a href="convenienceList.html">편의점 행사목록</a></li>
+        <li><a href="martFlyers.html">마트 전단지</a></li>
+        <li><a href="community.html">커뮤니티</a></li>
+        <li><a href="support.html">고객센터</a></li>
+      </ul>
+    </nav>
+    <div class="search-login">
+      <button id="loginBtn" onclick="location.href='login.html'">로그인</button>
+      <div id="userIcon" class="user-icon" style="display:none;" onclick="toggleNav()">👤</div>
+    </div>
+  </header>
+
+  <!-- 사이드바 -->
+  <aside id="navMenu" class="nav-menu">
+    <button class="close-btn" onclick="toggleNav()">×</button>
+    <ul>
+      <li><a href="mypage.html">마이페이지</a></li>
+      <li><a href="#">설정</a></li>
+      <li><a href="logout.php">로그아웃</a></li>
+    </ul>
+  </aside>
+
+  <main class="mypage-container">
+    <div class="mypage-header">
+      <h2>마이페이지</h2>
+      <span>접속한 계정: <strong id="user-role">-</strong></span>
+    </div>
+
+    <div class="mypage-icon-box">
+      <li><a>최근 본 상품<a></li>
+      <li><a>즐겨찾기 상품<a></li>
+      <li><a href="edit_profile.html">회원정보 수정<a></li>
+      <li id="sellerLink" style="display:none;"></li>
+    </div>
+
+    <section>
+      <h3>최근 본 상품</h3>
+      <div class="recent-products">
+        <div class="product-card">상품 A</div>
+        <div class="product-card">상품 B</div>
+      </div>
+    </section>
+
+    <ul class="mypage-menu">
+      <li>즐겨찾기 상품 <span>></span></li>
+      <li>회원정보 수정 <span>></span></li>
+      <li>사업자 등록 <span>></span></li>
+      <li>할인쿠폰 <span>></span></li>
+      <li>고객센터 <span>></span></li>
+    </ul>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 온전 JAVA</p>
+  </footer>
+</body>
+</html>

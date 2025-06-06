@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>회원정보 수정</title>
+  <link rel="stylesheet" href="style.css"/>
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <header>
+    <h1 onclick="location.href='index.html'">온전 JAVA</h1>
+    <nav>
+      <ul>
+        <li><a href="convenienceList.html">편의점 행사목록</a></li>
+        <li><a href="martFlyers.html">마트 전단지</a></li>
+        <li><a href="community.html">커뮤니티</a></li>
+        <li><a href="support.html">고객센터</a></li>
+      </ul>
+    </nav>
+    <div class="search-login">
+      <button id="loginBtn" onclick="location.href='login.html'">로그인</button>
+      <div id="userIcon" class="user-icon" style="display:none;" onclick="toggleNav()">👤</div>
+    </div>
+  </header>
+
+  <!-- 사이드바 -->
+  <aside id="navMenu" class="nav-menu">
+    <button class="close-btn" onclick="toggleNav()">×</button>
+    <ul>
+      <li><a href="mypage.html">마이페이지</a></li>
+      <li><a href="#">설정</a></li>
+      <li><a href="logout.php">로그아웃</a></li>
+    </ul>
+  </aside>
+
+<body>
+  <main class="signup-main">
+    <form class="signup-form" action="edit_profile.php" method="POST">
+      <input type="text" name="nickname" placeholder="새 닉네임" required />
+      <input type="email" name="email" placeholder="새 이메일" required />
+
+      <hr>
+      <input type="password" name="current_password" placeholder="현재 비밀번호" required />
+      <input type="password" name="new_password" placeholder="새 비밀번호(변경할 경우)" />
+
+      <button type="submit">정보 수정하기</button>
+    </form>
+  </main>
+</body>
+
+<footer>
+    <p>&copy; 2025 온전 JAVA</p>
+  </footer>
+
+  <script>
+    fetch('session_check.php')
+      .then(res => res.json())
+      .then(data => {
+        if (data.loggedIn) {
+          document.getElementById('loginBtn').style.display = 'none';
+          document.getElementById('userIcon').style.display = 'block';
+        }
+      });
+  </script>
+</body>
+</html>
