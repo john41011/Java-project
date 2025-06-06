@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>사업자 등록 인증</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="mypage.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1 onclick="location.href='index.html'">온전 JAVA</h1>
+    <nav>
+      <ul>
+        <li><a href="https://sturdy-fortnight-576x9jp9xjw3v66w-5000.app.github.dev">편의점 행사목록</a></li>
+        <li><a href="martFlyers.html">마트 전단지</a></li>
+        <li><a href="community.html">커뮤니티</a></li>
+        <li><a href="support.html">고객센터</a></li>
+      </ul>
+    </nav>
+    <div class="search-login">
+      <button id="loginBtn" onclick="location.href='login.html'">로그인</button>
+      <div id="userIcon" class="user-icon" style="display: none;" onclick="toggleNav()">👤</div> 
+    </div>
+  </header>
+  
+  <aside id="navMenu" class="nav-menu">
+    <button class="close-btn" onclick="toggleNav()">×</button>
+    <ul>
+      <li><a href="mypage.html">마이페이지</a></li>
+      <li><a href="#">설정</a></li>
+      <li><a href="logout.php">로그아웃</a></li>
+    </ul>
+  </aside>
+
+  <main>
+    <h2>사업자 등록 인증 요청</h2>
+    <iframe src="admin_seller_manage.php" style="width:100%; height:500px; border:none;"></iframe>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 온전 JAVA</p>
+  </footer>
+
+  <script>
+    fetch('session_check.php')
+      .then(res => res.json())
+      .then(data => {
+        if (data.loggedIn) {
+          document.getElementById('loginBtn').style.display = 'none';
+          document.getElementById('userIcon').style.display = 'block';
+        }
+      });
+  </script>
+</body>
+</html>
