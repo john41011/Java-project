@@ -110,3 +110,44 @@
     align-items: stretch;
   }
 }
+
+/* 댓글 */
+#comments-section {
+  margin: 20px 0 20px 0;
+  padding: 20px;
+  background: #fafafa;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+#comment-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+#comment-list li {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+#comment-form textarea {
+  width: 97%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  font-size: 14px;
+}
+
+#comment-form button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #0078ff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}

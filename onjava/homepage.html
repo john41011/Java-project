@@ -67,13 +67,11 @@
         <ul id="job-preview"></ul>
       </div>
     </section>
-    <section class="board-box">
-      <h3><a href="notice.html">공지사항</a></h3>
-      <ul>
-        <li>사이트 오픈 안내 - 관리자</li>
-        <li>이용 규칙 안내 - 관리자</li>
-        <li>업데이트 예고 - 관리자</li>
-      </ul>
+    <section class="support-box">
+      <div class="board-box">
+        <h3><a href="support.html">고객센터</a></h3>
+        <ul id="notice-preview"></ul>
+      </div>
     </section>
   </main>
 
@@ -104,6 +102,17 @@
           });
         });
     });
+
+    fetch('fetch_support_posts.php?type=notice&sort=date_desc')
+      .then(res => res.json())
+      .then(posts => {
+        const ul = document.getElementById(`notice-preview`);        
+        posts.slice(0, 3).forEach(post => {
+          const li = document.createElement('li');
+          li.innerHTML = `<a href="view_notice.html?id=${post.id}">${post.title}</a> - ${post.nickname}`;
+          ul.appendChild(li);
+        });
+      });
   </script>
 </body>
 </html>
