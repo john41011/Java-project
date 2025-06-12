@@ -1,0 +1,81 @@
+
+/* 로그인 페이지 */
+.login-main {
+  background-color: #e0e0e0;
+  display: flex;
+  justify-content: center;
+  padding: 50px 0;
+}
+
+.login-container {
+  background: none;
+  text-align: center;
+  width: 320px;
+}
+
+.login-logo-text {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: black;
+}
+
+.login-form .input-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  background: white;
+  border-radius: 4px;
+  padding: 8px;
+  border: 1px solid #ccc;
+}
+
+.input-group .icon {
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.login-form input {
+  border: none;
+  outline: none;
+  font-size: 16px;
+  width: 100%;
+  background: transparent;
+}
+
+.find-links {
+  text-align: right;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.find-links a {
+  color: #333;
+  text-decoration: none;
+}
+
+.login-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+/* 버튼 스타일 공통 */
+.btn,
+.login-btn,
+.signup-btn {
+  width: 100%;
+  padding: 12px 0;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.login-btn,
+.signup-btn {
+  background-color: #a0ffff;
+  color: black;
+}

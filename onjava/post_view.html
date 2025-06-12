@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>게시판 글</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="community.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1 onclick="location.href='homepage.html'">온전 JAVA</h1>
+    <nav>
+      <ul>
+        <li><a href="https://sturdy-fortnight-576x9jp9xjw3v66w-5000.app.github.dev">편의점 행사목록</a></li>
+        <li><a href="martFlyers.html">마트 전단지</a></li>
+        <li><a href="community.html">커뮤니티</a></li>
+        <li><a href="support.html">고객센터</a></li>
+      </ul>
+    </nav>
+    <div class="search-login">
+      <button id="loginBtn" onclick="location.href='login.html'">로그인</button>
+      <div id="userIcon" class="user-icon" style="display:none;" onclick="toggleNav()">👤</div>
+    </div>
+  </header>
+
+  <aside id="navMenu" class="nav-menu">
+    <button class="close-btn" onclick="toggleNav()">×</button>
+    <ul>
+      <li><a href="mypage.html">마이페이지</a></li>
+      <li><a href="#">설정</a></li>
+      <li><a href="logout.php">로그아웃</a></li>
+    </ul>
+  </aside>
+
+  <main class="post-view">
+    <div id="postDetail">
+      <!-- 게시글 데이터 삽입 -->
+    </div>
+    <hr>
+    <!-- 댓글 영역 -->
+    <section id="comments-section">
+      <h2>💬 댓글</h2>
+      <ul id="comment-list">
+        <!-- 댓글이 여기에 동적으로 표시됨 -->
+      </ul>
+      <div id="comment-form">
+        <textarea id="comment-content" placeholder="댓글을 입력하세요" rows="3"></textarea>
+        <div style="text-align: right"><button onclick="submitComment()">댓글 등록</button></div>
+      </div>
+    </section>
+    <div style="text-align: center"><button class="table-btn" onclick="location.href='community.html'">목록으로</button></div>
+  </main>
+
+  <footer>
+    <p>© 2025 온전 JAVA</p>
+  </footer>
+
+  <script>
+    fetch('session_check.php')
+      .then(res => res.json())
+      .then(data => {
+        if (data.loggedIn) {
+          document.getElementById('loginBtn').style.display = 'none';
+          document.getElementById('userIcon').style.display = 'block';
+        }
+      });
+
+    const postId = new URLSearchParams(location.search).get('id');
+
+    fetch(`post_view.php?id=${postId}`)
+      .then(res => res.json())
+      .then(post => {
+        const container = document.getElementById('postDetail');
+        if (post.error) {
+          container.innerHTML = `<p>글을 불러오는 데 실패했습니다.</p>`;
+        } else {
+          container.innerHTML = `
+            <h2>${post.title}</h2>
+            <div style="text-align: right"><strong>작성자:</strong> ${post.nickname}
+            <strong style="margin-left: 15px">작성일:</strong> ${post.date}
+            <strong style="margin-left: 5px">조회수:</strong> ${post.views}</div>
+            <hr>
+            <p>${post.content}</p>
+          `;
+        }
+      });
+    
+    function loadComments() {
+      fetch(`fetch_comments.php?post_id=${postId}`)
+        .then(res => res.json())
+        .then(comments => {
+          const list = document.getElementById('comment-list');
+          list.innerHTML = '';
+          comments.forEach(comment => {
+            const li = document.createElement('li');
+            li.textContent = `${comment.nickname}: ${comment.content} (${comment.created_at})`;
+            list.appendChild(li);
+          });
+        });
+    }
+
+    function submitComment() {
+      const content = document.getElementById('comment-content').value.trim();
+      if (!content) {
+        alert('댓글을 입력해주세요.');
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('post_id', postId);
+      formData.append('content', content);
+
+      fetch('add_comment.php', {
+        method: 'POST',
+        body: formData
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          document.getElementById('comment-content').value = '';
+          loadComments(); // 댓글 새로 불러오기
+        } else {
+          alert(data.message || '댓글 등록 실패');
+        }
+      });
+    }
+    // 페이지 로드 시 댓글 불러오기
+    window.addEventListener('DOMContentLoaded', loadComments);
+  </script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+.support-main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: #f8f8f8;
+}
+
+.support-tabs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.tab-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.tab-buttons button {
+  padding: 10px 20px;
+  background-color: white;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+.tab-buttons button.active {
+  background-color: #0078ff;
+  color: white;
+  border-color: #0078ff;
+}
+
+.write-btn {
+  padding: 10px 20px;
+  background-color: #0078ff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.support-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  box-shadow: 0 0 5px rgba(0,0,0,0.05);
+}
+
+.support-table th,
+.support-table td {
+  padding: 12px 8px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+.support-table th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+.support-table tr:hover {
+  background-color: #f6f6f6;
+}
+
+.support-table tr td a {
+  color: black;
+  text-decoration: none;
+}
+
+.form-main {
+  max-width: 700px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.form-main h2 {
+  margin-bottom: 20px;
+}
+
+.form-main label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+}
+
+.form-main input[type="text"],
+.form-main textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: none;
+}
+
+.notice-btn,
+.inquiry-btn {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #0078ff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.table-btn {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #0078ff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* 문의 댓글 */
+#inquiry-comments {
+  margin: 20px 0 20px 0;
+  padding: 20px;
+  background: #fafafa;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+#comment-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+#comment-list li {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+#comment-form textarea {
+  width: 97%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  font-size: 14px;
+}

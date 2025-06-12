@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>온전 JAVA - 메인</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="homepage.css">
+  <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=2020155c8a25c9cc0f84078543fb282e&libraries=services"></script>
+  <script src="map.js"></script>
+  <script src="script.js"></script>
+</head>
+
+<body>
+  <header>
+    <h1 onclick="location.href='homepage.html'">온전 JAVA</h1>
+    <nav>
+      <ul>
+        <li><a href="https://sturdy-fortnight-576x9jp9xjw3v66w-5000.app.github.dev">편의점 행사목록</a></li>
+        <li><a href="martFlyers.html">마트 전단지</a></li>
+        <li><a href="community.html">커뮤니티</a></li>
+        <li><a href="support.html">고객센터</a></li>
+      </ul>
+    </nav>
+    <div class="login">
+      <button id="loginBtn" onclick="location.href='login.html'">로그인</button>
+      <div id="userIcon" class="user-icon" style="display:none;" onclick="toggleNav()">👤</div>
+    </div>
+  </header>
+
+  <aside id="navMenu" class="nav-menu">
+    <button class="close-btn" onclick="toggleNav()">×</button>
+    <ul>
+      <li><a href="mypage.html">마이페이지</a></li>
+      <li><a href="#">설정</a></li>
+      <li><a href="logout.php">로그아웃</a></li>
+    </ul>
+  </aside>
+
+  <main>
+    <section id="map-container">
+      <div class="map-controls">
+        <input type="text" id="searchInput" placeholder="주소를 입력하세요"/>
+        <button onclick="searchAddress()">검색</button>
+        <div class="filter-buttons">
+          <button style="color: #50409f" onclick="filterByBrand(['CU', 'Cu', 'cu', '씨유'])">CU</button>
+          <button style="color: #97e0e0" onclick="filterByBrand(['GS25', 'Gs25', '지에스25'])">GS25</button>
+          <button style="color: #043d22" onclick="filterByBrand(['세븐일레븐', '7-Eleven', '7-eleven'])">7-Eleven</button>
+          <button style="color: #dbb148" onclick="filterByBrand(['이마크24', 'Emart24'])">Emart24</button>
+          <button style="color: #000000" onclick="filterByBrand('편의점')">전체</button>
+        </div>
+      </div>
+      <div id="map" style="width:100%; height:400px;"></div>
+    </section>
+
+    <!-- 게시판 미리보기 -->
+    <section class="board-section">
+      <div class="board-box">
+        <h3><a href="community.html?board=free">자유게시판</a></h3>
+        <ul id="free-preview"></ul>
+      </div>
+      <div class="board-box">
+        <h3><a href="community.html?board=share">정보공유 게시판</a></h3>
+        <ul id="share-preview"></ul>
+      </div>
+      <div class="board-box">
+        <h3><a href="community.html?board=job">구인구직 게시판</a></h3>
+        <ul id="job-preview"></ul>
+      </div>
+    </section>
+    <section class="support-box">
+      <div class="board-box">
+        <h3><a href="support.html">고객센터</a></h3>
+        <ul id="notice-preview"></ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 온전 JAVA</p>
+  </footer>
+
+  <script>
+    fetch('session_check.php')
+      .then(res => res.json())
+      .then(data => {
+        if (data.loggedIn) {
+          document.getElementById('loginBtn').style.display = 'none';
+          document.getElementById('userIcon').style.display = 'block';
+        }
+      });
+
+    const boards = ['free', 'share', 'job'];
+    boards.forEach(board => {
+      fetch(`fetch_posts.php?board=${board}&sort=date_desc`)
+        .then(res => res.json())
+        .then(posts => {
+          const ul = document.getElementById(`${board}-preview`);
+          posts.slice(0, 3).forEach(post => {
+            const li = document.createElement('li');
+            li.innerHTML = `<a href="post_view.html?id=${post.id}">${post.title}</a> - ${post.nickname}`;
+            ul.appendChild(li);
+          });
+        });
+    });
+
+    fetch('fetch_support_posts.php?type=notice&sort=date_desc')
+      .then(res => res.json())
+      .then(posts => {
+        const ul = document.getElementById(`notice-preview`);        
+        posts.slice(0, 3).forEach(post => {
+          const li = document.createElement('li');
+          li.innerHTML = `<a href="view_notice.html?id=${post.id}">${post.title}</a> - ${post.nickname}`;
+          ul.appendChild(li);
+        });
+      });
+  </script>
+</body>
+</html>

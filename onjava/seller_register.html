@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>사업자 등록</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="mypage.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1 onclick="location.href='homepage.html'">온전 JAVA</h1>
+    <nav>
+      <ul>
+        <li><a href="https://sturdy-fortnight-576x9jp9xjw3v66w-5000.app.github.dev">편의점 행사목록</a></li>
+        <li><a href="martFlyers.html">마트 전단지</a></li>
+        <li><a href="community.html">커뮤니티</a></li>
+        <li><a href="support.html">고객센터</a></li>
+      </ul>
+    </nav>
+    <div class="search-login">
+      <button id="loginBtn" onclick="location.href='login.html'">로그인</button>
+      <div id="userIcon" class="user-icon" style="display: none;" onclick="toggleNav()">👤</div> 
+    </div>
+  </header>
+  
+  <aside id="navMenu" class="nav-menu">
+    <button class="close-btn" onclick="toggleNav()">×</button>
+    <ul>
+      <li><a href="mypage.html">마이페이지</a></li>
+      <li><a href="#">설정</a></li>
+      <li><a href="logout.php">로그아웃</a></li>
+    </ul>
+  </aside>
+
+  <main class="mypage-container">
+    <h2>사업자 등록</h2>
+    <form action="seller_register.php" method="POST">
+      <label>상호명: <input type="text" name="shop_name" required></label><br><br>
+      <label>사업자등록번호: <input type="text" name="biz_number" required></label><br><br>
+      <div style="text-align: right"><button class="upload-btn" type="submit">등록하기</button></div>
+    </form>
+  </main>
+
+  <footer>
+    <p>© 2025 온전 JAVA</p>
+  </footer>
+
+  <script>
+    fetch('session_check.php')
+      .then(res => res.json())
+      .then(data => {
+        if (data.loggedIn) {
+          document.getElementById('loginBtn').style.display = 'none';
+          document.getElementById('userIcon').style.display = 'block';
+        }
+      });
+  </script>
+</body>
+</html>
